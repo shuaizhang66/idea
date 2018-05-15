@@ -1,0 +1,123 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Internship Sign In & Sign Up Form a Responsive Widget Template :: w3layouts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Internship Sign In & Sign Up Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+<link href="css/snow.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- //Custom Theme files -->
+<!-- web font -->
+<!--<link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">-->
+
+<!-- //web font -->
+</head>
+<body>
+<div class="snow-container">
+			  <div class="snow foreground"></div>
+			  <div class="snow foreground layered"></div>
+			  <div class="snow middleground"></div>
+			  <div class="snow middleground layered"></div>
+			  <div class="snow background"></div>
+			  <div class="snow background layered"></div>
+			</div>
+
+<div class="top-buttons-agileinfo">
+<!---<a href="index.html"  class="active">登录</a><a href="signup.html">注册</a>
+--->
+</div>
+<h1>存储每个灵光乍现的想法
+</h1>
+<div class="main-agileits">
+<!--form-stars-here-->
+		<div class="form-w3-agile">
+
+			<form action="#" method="post">
+					<input type="text" id = "titleValu" name="Eamil" placeholder="IDEA Title" required="" />
+					<input type="email" name="contentValu" placeholder="IDEA Content" required="" />
+
+				<div class="submit-w3l">
+					<input type="submit" id = "submit" value="提交">
+				</div>
+				<p class="p-bottom-w3ls"><a href="https://github.com/ChengOrangeJu/WebExtensionWallet">点击安装</a>如果你没有一个星云链钱包。
+</p>
+			</form>
+		</div>
+		</div>
+<!--//form-ends-here-->
+<!-- copyright -->
+	<div class="copyright w3-agile">
+		<p> ©张帅 联系我：zs649704832（微信） 邮箱：649704832@qq.com</a></p>
+	</div>
+	<!-- //copyright -->
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script src=js/nebPay.js></script>
+  <script src=js/nebulas.js></script>
+	<script>
+	"use strict";
+
+	  var dappAddress = "n1icRB5JKeLWDXqmwCv4XTamgiNrLUEpzE6";
+
+    var nebulas = require("nebulas"),
+    Account = nebulas.Account,
+    neb = new nebulas.Neb();
+    neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
+
+		console.log(neb);
+
+    // 智能合约地址
+
+		var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
+    var nebPay = new NebPay();
+		$("#submit").click(function() {
+			console.log("走这了吗？");
+
+			var to = dappAddress;
+			var value = "0";
+			var callFunction = "save"
+			var callArgs = "[\"" + $("#titleValu").val() + "\",\"" + $("#contentValu").val() + "\"]"
+
+			serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
+					listener: cbPush        //设置listener, 处理交易返回信息
+			});
+
+			intervalQuery = setInterval(function () {
+					funcIntervalQuery();
+			}, 5000);
+	});
+
+
+
+   var intervalQuery
+
+    function funcIntervalQuery() {
+        nebPay.queryPayInfo(serialNumber)   //search transaction result from server (result upload to server by app)
+            .then(function (resp) {
+                console.log("tx result: " + resp)   //resp is a JSON string
+                var respObject = JSON.parse(resp)
+                if(respObject.code === 0){
+                    alert(`set ${$("#search_value").val()} succeed!`)
+                    clearInterval(intervalQuery)
+                }
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }
+
+		function cbPush(resp) {
+			console.log("response of push: " + JSON.stringify(resp))
+		 }
+	</script>
+</html>

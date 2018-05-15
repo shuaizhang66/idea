@@ -45,7 +45,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 			<form action="#" method="post">
 					<input type="text" id = "titleValu" name="Eamil" placeholder="IDEA Title" required="" />
-					<input type="email" name="contentValu" placeholder="IDEA Content" required="" />
+					<input type="text" name="contentValu" placeholder="IDEA Content" required="" />
 
 				<div class="submit-w3l">
 					<input type="submit" id = "submit" value="提交">
@@ -67,12 +67,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<script>
 	"use strict";
 
-	  var dappAddress = "n1icRB5JKeLWDXqmwCv4XTamgiNrLUEpzE6";
+//智能合约地址
+	  var dappAddress = "n1n1W1YNWx7LidXeSPNKzJwucsfQsbF1W6A";
 
     var nebulas = require("nebulas"),
     Account = nebulas.Account,
     neb = new nebulas.Neb();
-    neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
+    // neb.setRequest(new nebulas.HttpRequest("https://testnet.nebulas.io"));
+		neb.setRequest(new nebulas.HttpRequest("https://mainnet.nebulas.io"));
+
 
 		console.log(neb);
 
